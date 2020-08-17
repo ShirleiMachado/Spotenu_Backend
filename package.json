@@ -1,0 +1,42 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShirleiMachado/Spotenu_Backend.git"
+  },
+  "author": "Shirlei_Machado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShirleiMachado/Spotenu_Backend/issues"
+  },
+  "homepage": "https://github.com/ShirleiMachado/Spotenu_Backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "serveless": "0.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/knex": "^0.16.1",
+    "@types/node": "^14.6.0",
+    "@types/uuid": "^8.3.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.0",
+    "knex": "^0.21.5",
+    "mysql": "^2.18.1"
+  }
+}
