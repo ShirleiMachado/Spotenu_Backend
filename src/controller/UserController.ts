@@ -74,9 +74,47 @@ export class UserController {
       res.status(400).send({
         message: e.message,
       });
-    
-      
+     
     }
     BaseDataBase.destroyConnection();
 }
-  };
+
+public async signupBand(req: Request, res: Response) {
+  try {
+    const userData = {
+      name: req.body.name,
+      nickname: req.body.nickname,
+      email: req.body.email,
+      password: req.body.password,
+      description: req.body.description,
+      role: req.body.role
+
+    };
+    const userBusiness = new UserBusiness();
+    await userBusiness.signupBands(userData.name, userData.nickname, userData.email, 
+    userData.password, userData.description, userData.role)
+    res.status(200).send({
+      message: "created band"
+    });
+    } catch (e) {
+    res.status(400).send({
+      message: e.message,
+    });
+  }
+  BaseDataBase.destroyConnection();
+ }
+
+ async getAllBandList(req: Request, res: Response) {
+
+  try {
+    const userBusiness = new UserBusiness();
+    const result = await userBusiness.getAllBand(req.headers.authorization!)
+    res.status(200).send({
+      result
+    });
+
+  } catch (error) {
+      res.send({ message: error.message }).status(error.code);
+  }
+}
+}
