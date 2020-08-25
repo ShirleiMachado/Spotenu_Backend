@@ -1,5 +1,6 @@
 import { BaseDataBase } from "./BaseDatabase";
 import { User } from "../model/User";
+import { Band } from "../model/band";
 
 
 export class UserDatabase extends BaseDataBase {
@@ -57,4 +58,53 @@ export class UserDatabase extends BaseDataBase {
     await this.getconnection().raw(`
     DELETE FROM ${UserDatabase.TABLE_NAME} WHERE id = "${id}"`);
   }
+
+  public async createBands(
+    id: string,
+    name: string,
+    nickname:string,
+    email: string,
+    password: string,
+    description: string,
+    isApproved: boolean = false,
+    role: string
+  ): Promise<void> {
+    await this.getconnection()
+      .insert({
+        id,
+        name,
+        nickname,
+        email,
+        password,
+        description,
+        isApproved,
+        role
+      })
+      .into(UserDatabase.TABLE_NAME);
+  }
+
+  public async getAllBand(): Promise<Band[]> {
+    try{
+      const result = await this.getconnection()
+      .select("name", "nickname", "email", "isApproved")
+      .from(UserDatabase.TABLE_NAME)
+      .where({ role:"BAND"});
+   
+       return result;
+       
+    } catch(err) {
+      throw new Error(err.sqlMessage || err.message)
+    }
+  }
+  public async toApprove(nickname:string) {
+    try {
+      await this.getconnection()
+      .update({isApproved: "1"})
+      .from(UserDatabase.TABLE_NAME)
+      .where({nickname})
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message)
+    }
+  }
+  
 }

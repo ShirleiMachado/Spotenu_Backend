@@ -5,7 +5,7 @@ export enum UserType {
     ADMIN = "ADMIN"
   }
   
-  export class CreateBand{
+  export class Band{
    
     constructor(
       private id: string,
@@ -14,7 +14,7 @@ export enum UserType {
       private email: string,
       private password: string,
       private description: string,
-      private aproved: boolean,
+      private aproved: boolean = false,
       private role: UserType
     ) {}
   
